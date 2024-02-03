@@ -36,4 +36,5 @@ class ArrayHandler {
 
 const arrayHandler = new ArrayHandler(productsData);
 
-module.exports = arrayHandler;
+module.exports = {arrayHandler, ArrayHandler};
+

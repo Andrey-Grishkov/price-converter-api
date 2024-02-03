@@ -1,11 +1,11 @@
 const rateApi = require('../utils/RateApi');
 const formattedDate = require('../utils/DataHandler');
-const arrayHandler = require('../utils/ArrayHandler');
+const {arrayHandler, ArrayHandler} = require('../utils/ArrayHandler');
 const fs = require('fs');
 
 class ProductController {
 
-  getProduct = (req, res) => {
+  setValue = (arrayHandler, req, res) => {
     // Get id USA dollar from currency list by name, because id changes
     rateApi.getDollarIdList()
       .then(currentIdList => {
@@ -28,9 +28,14 @@ class ProductController {
       });
   }
 
+  getProduct = (req, res) => {
+    this.setValue(arrayHandler, req, res)
+  }
+
   postProduct = (req, res) => {
     const requestData = req.body;
-    res.json(requestData);
+    const arrayHandler = new ArrayHandler(requestData);
+    this.setValue(arrayHandler, req, res)
   }
 }
 
