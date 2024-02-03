@@ -1,6 +1,7 @@
 const rateApi = require('../utils/RateApi');
 const formattedDate = require('../utils/DataHandler');
 const arrayHandler = require('../utils/ArrayHandler');
+const fs = require('fs');
 
 class ProductController {
 
@@ -26,7 +27,17 @@ class ProductController {
         res.status(500).send(`Ошибка: ${err}`);
       });
   }
+
+  postProduct = (req, res) => {
+    const requestData = req.body;
+    res.json(requestData);
+  }
 }
 
 const productController = new ProductController();
-module.exports = productController.getProduct;
+const getProductController = productController.getProduct;
+const postProductController = productController.postProduct;
+module.exports = {
+  getProductController,
+  postProductController
+};
