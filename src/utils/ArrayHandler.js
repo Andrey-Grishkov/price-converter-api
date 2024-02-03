@@ -1,6 +1,6 @@
-const productsData = require('./product.json');
+import productsData from './product.json';
 
-class ArrayHandler {
+export class ArrayHandler {
   constructor(productsData) {
     this.productsData = productsData;
   }
@@ -34,7 +34,5 @@ class ArrayHandler {
   }
 }
 
-const arrayHandler = new ArrayHandler(productsData);
-
-module.exports = {arrayHandler, ArrayHandler};
+export const arrayHandler = new ArrayHandler(productsData);
 

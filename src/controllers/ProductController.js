@@ -1,7 +1,6 @@
-const rateApi = require('../utils/RateApi');
-const formattedDate = require('../utils/DataHandler');
-const {arrayHandler, ArrayHandler} = require('../utils/ArrayHandler');
-const fs = require('fs');
+import {rateApi} from '../utils/RateApi';
+import {formattedDate} from '../utils/DataHandler';
+import {arrayHandler, ArrayHandler } from '../utils/ArrayHandler';
 
 class ProductController {
 
@@ -40,9 +39,5 @@ class ProductController {
 }
 
 const productController = new ProductController();
-const getProductController = productController.getProduct;
-const postProductController = productController.postProduct;
-module.exports = {
-  getProductController,
-  postProductController
-};
+export const getProductController = productController.getProduct;
+export const postProductController = productController.postProduct;

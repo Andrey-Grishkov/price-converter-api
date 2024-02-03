@@ -10,6 +10,4 @@ class DataHandler {
 }
 
 const dataHandler = new DataHandler();
-const formattedDate = dataHandler.makeData();
-
-module.exports = formattedDate;
+export const formattedDate = dataHandler.makeData();

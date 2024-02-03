@@ -1,5 +1,5 @@
-const { parseString } = require('xml2js');
-const { RATE_URL, DOLLAR_ID_URL, HEADERS } = require('./constants')
+import { parseString } from 'xml2js';
+import { RATE_URL, DOLLAR_ID_URL, HEADERS } from './constants';
 
 class RateApi {
   constructor(HEADERS, RATE_URL, DOLLAR_ID_URL) {
@@ -42,6 +42,4 @@ class RateApi {
   }
 }
 
-const rateApi = new RateApi(HEADERS, RATE_URL, DOLLAR_ID_URL);
-
-module.exports = rateApi;
+export const rateApi = new RateApi(HEADERS, RATE_URL, DOLLAR_ID_URL);
