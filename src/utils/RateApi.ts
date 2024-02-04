@@ -1,6 +1,36 @@
-import { Response } from 'node-fetch';
+import fetch, { Response } from 'node-fetch';
 import { parseString } from 'xml2js';
 import { RATE_URL, DOLLAR_ID_URL, HEADERS } from './constants.js';
+
+interface IRateResponse {
+  ValCurs: {
+    Date: string;
+    name: string;
+    Valute: {
+      ID: string;
+      NumCode: string;
+      CharCode: string;
+      Nominal: string;
+      Name: string;
+      Value: string;
+      VunitRate: string;
+    }[];
+  };
+}
+
+interface IResponseId {
+  Valuta: {
+    name: string;
+    Item: {
+      ID: string;
+      Name: string;
+      EngName: string;
+      Nominal: string;
+      ParentCode: string;
+    }[];
+  };
+}
+
 
 class RateApi {
   private _headers: { 'Content-Type': string };
@@ -13,35 +43,34 @@ class RateApi {
     this._dollarIdUrl = DOLLAR_ID_URL;
   }
 
-  private _checkResponse(res: Response) {
-    if (res.ok) {
+  private _checkResponse = (value: Response) => {
+    if (value.ok) {
       return new Promise((resolve, reject) => {
-        res
-          .text()
-          .then((xmlText) => {
-            parseString(xmlText, { explicitArray: false }, (err, result) => {
-              if (err) {
-                reject(`Error parsing XML: ${err}`);
-              } else {
-                resolve(result);
-              }
+        value.text()
+            .then(xmlText => {
+              parseString(xmlText, {explicitArray: false}, (err, result) => {
+                if (err) {
+                  reject(`Error parsing XML: ${err}`);
+                } else {
+                  resolve(result);
+                }
+              });
+            })
+            .catch(error => {
+              reject(`Error fetching XML: ${error}`);
             });
-          })
-          .catch((error) => {
-            reject(`Error fetching XML: ${error}`);
-          });
       });
     }
-    return Promise.reject(`${res.status}`);
+    return Promise.reject(`${value.status}`);
   }
 
   public getDollarIdList = () => {
     return fetch(`${this._dollarIdUrl}`, {
       headers: this._headers,
     }).then(this._checkResponse);
-  };
+  }
 
-  public getRateList = (formattedDate) => {
+  public getRateList = (formattedDate: string) => {
     return fetch(`${this._rateUrl}${formattedDate}`, {
       headers: this._headers,
     }).then(this._checkResponse);
