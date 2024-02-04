@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "ES2018",
     "lib": ["ES6"],
-    "module": "NodeNext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "rootDir": "./src",
     "resolveJsonModule": true,
     "allowJs": true,
@@ -13,7 +14,8 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": false
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"],

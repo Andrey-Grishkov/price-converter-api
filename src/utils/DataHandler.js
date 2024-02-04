@@ -6,7 +6,7 @@ class DataHandler {
     const day = currentDate.getDate();
     const formattedDate = `${day < 10 ? '0' : ''}${day}/${month < 10 ? '0' : ''}${month}/${year}`;
     return formattedDate;
-  }
+  };
 }
 
 const dataHandler = new DataHandler();

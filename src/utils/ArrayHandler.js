@@ -6,27 +6,25 @@ export class ArrayHandler {
   }
 
   findDollarId = (data) => {
-    const dollarId = data.Valuta.Item.filter(valutaItem => valutaItem.EngName === 'US Dollar')[0]['$']['ID'];
+    const dollarId = data.Valuta.Item.filter((valutaItem) => valutaItem.EngName === 'US Dollar')[0]['$']['ID'];
     return dollarId;
-  }
+  };
 
   findDollarRate = (data, id) => {
-    const dollarRate = data.ValCurs.Valute.filter(valutaItem => valutaItem['$']['ID'] === id)[0]['Value'];
+    const dollarRate = data.ValCurs.Valute.filter((valutaItem) => valutaItem['$']['ID'] === id)[0]['Value'];
     return dollarRate;
-  }
+  };
 
-  setPrice(rate){
-    const formattedProductsData = this.productsData.products.map(
-      (product)=> {
-        const formattedProduct = { ...product };
-        const price = formattedProduct.price;
-        const formattedDiscountPercentage = (100 - formattedProduct.discountPercentage)/100;
-        const formattedRate = Number(rate.replace(',', '.'));
-        const rateCoefficient = 1.1;
-        formattedProduct.price_rub = Math.ceil(price*formattedRate*formattedDiscountPercentage * rateCoefficient);
-        return formattedProduct;
-      }
-    )
+  setPrice(rate) {
+    const formattedProductsData = this.productsData.products.map((product) => {
+      const formattedProduct = { ...product };
+      const price = formattedProduct.price;
+      const formattedDiscountPercentage = (100 - formattedProduct.discountPercentage) / 100;
+      const formattedRate = Number(rate.replace(',', '.'));
+      const rateCoefficient = 1.1;
+      formattedProduct.price_rub = Math.ceil(price * formattedRate * formattedDiscountPercentage * rateCoefficient);
+      return formattedProduct;
+    });
 
     this.productsData.products = formattedProductsData;
 
@@ -35,4 +33,3 @@ export class ArrayHandler {
 }
 
 export const arrayHandler = new ArrayHandler(productsData);
-
