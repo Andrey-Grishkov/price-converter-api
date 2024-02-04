@@ -2,36 +2,6 @@ import fetch, { Response } from 'node-fetch';
 import { parseString } from 'xml2js';
 import { RATE_URL, DOLLAR_ID_URL, HEADERS } from './constants.js';
 
-interface IRateResponse {
-  ValCurs: {
-    Date: string;
-    name: string;
-    Valute: {
-      ID: string;
-      NumCode: string;
-      CharCode: string;
-      Nominal: string;
-      Name: string;
-      Value: string;
-      VunitRate: string;
-    }[];
-  };
-}
-
-interface IResponseId {
-  Valuta: {
-    name: string;
-    Item: {
-      ID: string;
-      Name: string;
-      EngName: string;
-      Nominal: string;
-      ParentCode: string;
-    }[];
-  };
-}
-
-
 class RateApi {
   private _headers: { 'Content-Type': string };
   private _rateUrl: string;
