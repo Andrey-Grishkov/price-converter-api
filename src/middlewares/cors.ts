@@ -6,6 +6,8 @@ const allowedCors: string[] = [
   'https://localhost:3000',
   'http://localhost:3001',
   'https://localhost:3001',
+  'https://price-converter-rho.vercel.app/',
+  'http://price-converter-rho.vercel.app/'
 ];
 
 enum HttpMethod {
