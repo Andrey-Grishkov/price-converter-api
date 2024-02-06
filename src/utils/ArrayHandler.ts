@@ -1,5 +1,5 @@
-import productsData from './product.json';
 import {IProduct, IProductsData, IDataId, IRateData} from "../types/interfaces.js";
+import productsData from './product.json' assert { type: "json" };
 
 export class ArrayHandler {
   public productsData: IProductsData;

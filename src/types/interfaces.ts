@@ -52,6 +52,13 @@ export interface IDataId {
     };
 }
 
+export interface IArrayHandler {
+    productsData: IProductsData;
+    findDollarId: (data: IDataId) => string | undefined;
+    findDollarRate: (data: IRateData, id: string) => string | undefined;
+    setPrice: (rate: string) => IProductsData;
+}
+
 // IDataId
 // {"Valuta":{"$":{"name":"Foreign Currency Market Lib"},"Item":[{"$":{"ID":"R01010"},"Name":"������������� " +
 //         "������","EngName":"Australian Dollar","Nominal":"1","ParentCode":"R01010    "},{"$":{"ID":"R01015"},"Name":
