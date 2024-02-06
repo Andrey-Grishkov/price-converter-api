@@ -3,4 +3,3 @@ export const DOLLAR_ID_URL: string = 'http://www.cbr.ru/scripts/XML_val.asp?d=0'
 export const HEADERS: { 'Content-Type': string } = {
   'Content-Type': 'application/xml',
 };
-

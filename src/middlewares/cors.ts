@@ -30,8 +30,6 @@ export const cors = (req: Request, res: Response, next: NextFunction) => {
     HttpMethod.DELETE,
   ];
 
-  if (!origin) throw new Error('req.headers is undefined');
-
   if (origin && allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Credentials', 'true');
