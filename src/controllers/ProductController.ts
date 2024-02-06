@@ -1,8 +1,8 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import { rateApi } from '../utils/RateApi.js';
 import { formattedDate } from '../utils/DataHandler.js';
 import { arrayHandler, ArrayHandler } from '../utils/ArrayHandler.js';
-import { IArrayHandler, IProductsData, IDataId, IRateData } from "../types/interfaces.js";
+import { IArrayHandler, IProductsData, IDataId, IRateData } from '../types/interfaces.js';
 
 class ProductController {
   setValue = (arrayHandler: IArrayHandler, req: Request, res: Response) => {
@@ -21,7 +21,7 @@ class ProductController {
             if (!rate) throw new Error('dollar rate is undefined');
             const productData = arrayHandler.setPrice(rate);
             // Return product.json to user, where calculated russian ruble price
-              return res.json(productData);
+            return res.json(productData);
           })
           .catch((err) => {
             res.status(500).send(`Ошибка: ${err}`);
@@ -33,7 +33,7 @@ class ProductController {
   };
 
   getProduct = (req: Request, res: Response) => {
-      this.setValue(arrayHandler, req, res);
+    this.setValue(arrayHandler, req, res);
   };
 
   postProduct = (req: Request, res: Response) => {

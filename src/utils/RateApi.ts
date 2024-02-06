@@ -1,11 +1,7 @@
 import fetch, { Response } from 'node-fetch';
 import { parseString } from 'xml2js';
-import { IDataId, IRateData } from "../types/interfaces.js";
+import { IDataId, IRateData } from '../types/interfaces.js';
 import { RATE_URL, DOLLAR_ID_URL, HEADERS } from './constants.js';
-
-interface myResponse extends Response {
-  data: IDataId;
-}
 
 class RateApi {
   private _headers: { 'Content-Type': string };
@@ -21,50 +17,52 @@ class RateApi {
   private _checkResponseId = (value: Response): Promise<IDataId> => {
     if (value.ok) {
       return new Promise((resolve, reject) => {
-        value.text()
-            .then(xmlText => {
-              parseString(xmlText, {explicitArray: false}, (err, result) => {
-                if (err) {
-                  reject(`Error parsing XML: ${err}`);
-                } else {
-                  resolve(result);
-                }
-              });
-            })
-            .catch(error => {
-              reject(`Error fetching XML: ${error}`);
+        value
+          .text()
+          .then((xmlText) => {
+            parseString(xmlText, { explicitArray: false }, (err, result) => {
+              if (err) {
+                reject(`Error parsing XML: ${err}`);
+              } else {
+                resolve(result);
+              }
             });
+          })
+          .catch((error) => {
+            reject(`Error fetching XML: ${error}`);
+          });
       });
     }
     return Promise.reject(`${value.status}`);
-  }
+  };
 
   private _checkResponseRate = (value: Response): Promise<IRateData> => {
     if (value.ok) {
       return new Promise((resolve, reject) => {
-        value.text()
-            .then(xmlText => {
-              parseString(xmlText, {explicitArray: false}, (err, result) => {
-                if (err) {
-                  reject(`Error parsing XML: ${err}`);
-                } else {
-                  resolve(result);
-                }
-              });
-            })
-            .catch(error => {
-              reject(`Error fetching XML: ${error}`);
+        value
+          .text()
+          .then((xmlText) => {
+            parseString(xmlText, { explicitArray: false }, (err, result) => {
+              if (err) {
+                reject(`Error parsing XML: ${err}`);
+              } else {
+                resolve(result);
+              }
             });
+          })
+          .catch((error) => {
+            reject(`Error fetching XML: ${error}`);
+          });
       });
     }
     return Promise.reject(`${value.status}`);
-  }
+  };
 
   public getDollarIdList = () => {
     return fetch(`${this._dollarIdUrl}`, {
       headers: this._headers,
     }).then(this._checkResponseId);
-  }
+  };
 
   public getRateList = (formattedDate: string) => {
     return fetch(`${this._rateUrl}${formattedDate}`, {

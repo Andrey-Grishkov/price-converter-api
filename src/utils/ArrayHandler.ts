@@ -1,5 +1,5 @@
-import {IProduct, IProductsData, IDataId, IRateData} from "../types/interfaces.js";
-import productsData from './product.json' assert { type: "json" };
+import { IProduct, IProductsData, IDataId, IRateData } from '../types/interfaces.js';
+import productsData from './product.json' assert { type: 'json' };
 
 export class ArrayHandler {
   public productsData: IProductsData;
@@ -9,12 +9,16 @@ export class ArrayHandler {
   }
 
   findDollarId = (data: IDataId) => {
-    const dollarId: string | undefined = data.Valuta.Item.filter(valutaItem => valutaItem.EngName === 'US Dollar')[0]['$']['ID'];
+    const dollarId: string | undefined = data.Valuta.Item.filter((valutaItem) => valutaItem.EngName === 'US Dollar')[0][
+      '$'
+    ]['ID'];
     return dollarId;
   };
 
   findDollarRate = (data: IRateData, id: string) => {
-    const dollarRate: string | undefined = data.ValCurs.Valute.filter((valutaItem) => valutaItem['$']['ID'] === id)[0]['Value'];
+    const dollarRate: string | undefined = data.ValCurs.Valute.filter((valutaItem) => valutaItem['$']['ID'] === id)[0][
+      'Value'
+    ];
     return dollarRate;
   };
 

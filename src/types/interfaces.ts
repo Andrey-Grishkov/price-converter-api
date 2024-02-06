@@ -1,62 +1,62 @@
 export interface IProduct {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    price_rub?: number | null;
-    discountPercentage: number;
-    rating: number;
-    stock: number;
-    brand: string;
-    category: string;
-    thumbnail: string;
-    images: string[];
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  price_rub?: number | null;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
 }
 
 export interface IProductsData {
-    products: IProduct[];
+  products: IProduct[];
 }
 
 export interface IRateData {
-    ValCurs: {
-        $: {
-            Date: string;
-            name: string;
-        };
-        Valute: {
-            $: {
-                ID: string;
-            };
-            NumCode: string;
-            CharCode: string;
-            Nominal: string;
-            Name: string;
-            Value: string;
-            VunitRate: string;
-        }[];
+  ValCurs: {
+    $: {
+      Date: string;
+      name: string;
     };
+    Valute: {
+      $: {
+        ID: string;
+      };
+      NumCode: string;
+      CharCode: string;
+      Nominal: string;
+      Name: string;
+      Value: string;
+      VunitRate: string;
+    }[];
+  };
 }
 
 export interface IDataId {
-    Valuta: {
-        $: {
-            name: string;
-        };
-        Item: {
-            $: { ID: string; };
-            Name: string;
-            EngName: string;
-            Nominal: string;
-            ParentCode: string;
-        }[];
+  Valuta: {
+    $: {
+      name: string;
     };
+    Item: {
+      $: { ID: string };
+      Name: string;
+      EngName: string;
+      Nominal: string;
+      ParentCode: string;
+    }[];
+  };
 }
 
 export interface IArrayHandler {
-    productsData: IProductsData;
-    findDollarId: (data: IDataId) => string | undefined;
-    findDollarRate: (data: IRateData, id: string) => string | undefined;
-    setPrice: (rate: string) => IProductsData;
+  productsData: IProductsData;
+  findDollarId: (data: IDataId) => string | undefined;
+  findDollarRate: (data: IRateData, id: string) => string | undefined;
+  setPrice: (rate: string) => IProductsData;
 }
 
 // IDataId
@@ -113,26 +113,4 @@ export interface IArrayHandler {
 //             "Name": "���� ���������� ������������ �����������",
 //             "Value": "114,9783",
 //             "VunitRate": "114,9783"
-//         },
-//         {
-//             "$": {
-//                 "ID": "R01060"
-//             },
-//             "NumCode": "051",
-//             "CharCode": "AMD",
-//             "Nominal": "100",
-//             "Name": "��������� ������",
-//             "Value": "22,4412",
-//             "VunitRate": "0,224412"
-//         },
-//         {
-//             "$": {
-//                 "ID": "R01090B"
-//             },
-//             "NumCode": "933",
-//             "CharCode": "BYN",
-//             "Nominal": "1",
-//             "Name": "����������� �����",
-//             "Value": "28,2324",
-//             "VunitRate": "28,2324"
 //         },

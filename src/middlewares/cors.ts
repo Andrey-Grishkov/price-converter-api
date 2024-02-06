@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { IncomingHttpHeaders } from 'http';
+
 const allowedCors: string[] = [
   'localhost:3000',
   'http://localhost:3000',
@@ -18,7 +18,7 @@ enum HttpMethod {
 }
 
 export const cors = (req: Request, res: Response, next: NextFunction) => {
-  const { origin } = req.headers as IncomingHttpHeaders || {};
+  const { origin } = req.headers || {};
   const { method } = req;
   const requestHeaders: string | undefined = req.headers['access-control-request-headers'];
   const DEFAULT_ALLOWED_METHODS: HttpMethod[] = [
